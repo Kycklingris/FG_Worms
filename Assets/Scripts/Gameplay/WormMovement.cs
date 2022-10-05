@@ -7,20 +7,22 @@ public class WormMovement : MonoBehaviour
     private CharacterController controller;
     private Vector3 playerVelocity;
     private float playerSpeed = 2.0f;
+    private bool groundedPlayer;
     private float jumpHeight = 1.0f;
-    public float gravityValue = -9.81f;
+    private float gravityValue = -9.81f;
 
     public Transform orbitCamera;
 
     // Start is called before the first frame update
     void Start()
     {
-        controller = gameObject.GetComponent(typeof(CharacterController)) as CharacterController;
+        this.controller = gameObject.GetComponent(typeof(CharacterController)) as CharacterController;
     }
 
     // Update is called once per frame
     void Update()
     {
+        this.groundedPlayer = controller.isGrounded;
         var forward = orbitCamera.forward;
         forward.y = 0;
 
@@ -28,9 +30,9 @@ public class WormMovement : MonoBehaviour
 
         var right = Vector3.Cross(forward.normalized, up.normalized);
 
-        if (controller.isGrounded && playerVelocity.y < 0)
+        if (this.groundedPlayer && this.playerVelocity.y < 0)
         {
-            playerVelocity.y = 0;
+            this.playerVelocity.y = 0;
         }
 
         var move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -41,20 +43,21 @@ public class WormMovement : MonoBehaviour
             moveForward *= move.z;
 
             var moveRight = right;
-            moveRight *= -move.x; // Not entirely sure why, but anyways
+            moveRight *= -move.x; // Not entirely sure why it needs to be negative, guessing the input is mapped as A/left to be positive
 
-            gameObject.transform.forward = forward;
-            controller.Move(moveForward * playerSpeed * Time.deltaTime);
-            controller.Move(moveRight * playerSpeed * Time.deltaTime);
+            var movement = moveForward + moveRight;
+
+            this.gameObject.transform.forward = movement;
+            this.controller.Move(movement * this.playerSpeed * Time.deltaTime);
         }
 
-        if (Input.GetButtonDown("Jump") && controller.isGrounded)
+        if (Input.GetButtonDown("Jump") && this.groundedPlayer)
         {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            this.playerVelocity.y += Mathf.Sqrt(this.jumpHeight * -3.0f * this.gravityValue);
         }
 
 
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        this.playerVelocity.y += gravityValue * Time.deltaTime;
+        this.controller.Move(playerVelocity * Time.deltaTime);
     }
 }
