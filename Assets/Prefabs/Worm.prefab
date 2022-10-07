@@ -443,6 +443,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2316277738607515043}
     m_Modifications:
+    - target: {fileID: 2652977588154154604, guid: a5e46d21450c4b34b805fbd837b87692, type: 3}
+      propertyPath: worm
+      value: 
+      objectReference: {fileID: 2316277738113998225}
     - target: {fileID: 3246682676428799836, guid: a5e46d21450c4b34b805fbd837b87692, type: 3}
       propertyPath: m_RootOrder
       value: 1

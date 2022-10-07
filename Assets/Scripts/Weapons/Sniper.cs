@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Sniper : MonoBehaviour
 {
+    public GameObject hitPrefab;
+    public GameObject zoomCamera;
+
     void OnEnable()
     {
         Sniper.RecursiveEnable(this.gameObject.transform);
@@ -28,6 +31,26 @@ public class Sniper : MonoBehaviour
 
     void Shoot()
     {
+        var location = this.zoomCamera.transform.position;
 
+        var forward = this.zoomCamera.transform.rotation * Vector3.forward;
+
+        RaycastHit hitInfo;
+
+        if (Physics.Raycast(location, forward, out hitInfo))
+        {
+            var tmp = Instantiate(this.hitPrefab, hitInfo.transform.position, Quaternion.identity);
+            if (hitInfo.transform.gameObject.CompareTag("Worm"))
+            {
+                tmp.GetComponent<HitMarker>().Attack(hitInfo.transform.gameObject, forward);
+            } else
+            {
+                tmp.SendMessage("OnLanded", this.gameObject);
+            }
+        } else // If the shot misses everything
+        {
+            GameObject.Find("GameplayController").GetComponent<GameplayScript>().NextTurn();
+        }
+            this.SendMessageUpwards("SentShot");
     }
 }

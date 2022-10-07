@@ -67,7 +67,7 @@ public class Team : ScriptableObject // required for instantiate
     public void NextTurn()
     {
         this.wormIndex++;
-        if (this.wormIndex == this.worms.Count)
+        if (this.wormIndex >= this.worms.Count)
         {
             this.wormIndex = 0;
         }

@@ -39,7 +39,7 @@ public class WormMovement : MonoBehaviour
             moveForward *= move.z;
 
             var moveRight = right;
-            moveRight *= -move.x; // Not entirely sure why it needs to be negative, guessing the input is mapped as A/left to be positive
+            moveRight *= -move.x; // Not entirely sure why it needs to be negative
 
             var movement = moveForward + moveRight;
 

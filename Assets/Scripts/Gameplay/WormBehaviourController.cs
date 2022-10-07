@@ -72,6 +72,13 @@ public class WormBehaviourController : MonoBehaviour
             exitBeforeSelect = true;
         }
 
+        var orbitCamera = this.transform.Find("Orbit Camera").gameObject; // Reset the camera to orbit camera
+        if (this.isActive)
+        {
+            orbitCamera.SetActive(true);
+        }
+        this.movement.orbitCamera = orbitCamera.transform;
+
         foreach (var child in this.weapons) // Disable all weapons
         {
             child.gameObject.SetActive(false);
@@ -83,6 +90,13 @@ public class WormBehaviourController : MonoBehaviour
         }
 
         this.weapons[number].gameObject.SetActive(true);
+
+        if (number == 1) // If the weapon is a sniper, switch movement to follow the direction of the scoped camera
+        {
+            var scopeCamera = this.weapons[number].Find("Scope Camera").gameObject;
+            this.movement.orbitCamera = scopeCamera.transform;
+            orbitCamera.SetActive(false);
+        }
     }
 
     void SentShot()

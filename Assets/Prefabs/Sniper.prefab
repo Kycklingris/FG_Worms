@@ -109,8 +109,8 @@ RectTransform:
   m_Children:
   - {fileID: 457318106752075409}
   - {fileID: 457318107281387175}
-  m_Father: {fileID: 457318107922742466}
-  m_RootOrder: 0
+  m_Father: {fileID: 3246682676428799836}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -126,7 +126,7 @@ Canvas:
   m_GameObject: {fileID: 457318107234313542}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 457318107922742464}
   m_PlaneDistance: 1
   m_PixelPerfect: 0
@@ -265,6 +265,7 @@ GameObject:
   - component: {fileID: 457318107922742466}
   - component: {fileID: 457318107922742464}
   - component: {fileID: 457318107922742467}
+  - component: {fileID: 2652977588154154604}
   m_Layer: 0
   m_Name: Scope Camera
   m_TagString: Untagged
@@ -283,8 +284,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.245, z: -0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 457318107234313545}
+  m_Children: []
   m_Father: {fileID: 3246682676428799836}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -338,7 +338,20 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457318107922742465}
-  m_Enabled: 0
+  m_Enabled: 1
+--- !u!114 &2652977588154154604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457318107922742465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ab6111f7e9157b4caf621663345a414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 750
 --- !u!1 &8673860882295754179
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,6 +384,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 457318107922742466}
+  - {fileID: 457318107234313545}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -436,3 +450,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b075df4da5ea27947b3bf5dd3a793c7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPrefab: {fileID: 7831902890744790008, guid: afc9eabb9aa08fd4fa70289aa7c2b89e, type: 3}
+  zoomCamera: {fileID: 457318107922742465}
