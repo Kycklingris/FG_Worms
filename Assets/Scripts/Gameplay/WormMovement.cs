@@ -5,7 +5,7 @@ using UnityEngine;
 public class WormMovement : MonoBehaviour
 {
     private CharacterController controller;
-    private Vector3 playerVelocity;
+    private WormGravity gravityController;
     private float playerSpeed = 2.0f;
     private bool groundedPlayer;
     private float jumpHeight = 1.0f;
@@ -14,9 +14,10 @@ public class WormMovement : MonoBehaviour
     public Transform orbitCamera;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        this.controller = gameObject.GetComponent(typeof(CharacterController)) as CharacterController;
+        this.controller = this.gameObject.GetComponent(typeof(CharacterController)) as CharacterController;
+        this.gravityController = this.gameObject.GetComponent(typeof(WormGravity)) as WormGravity;
     }
 
     // Update is called once per frame
@@ -29,11 +30,6 @@ public class WormMovement : MonoBehaviour
         var up = new Vector3(0.0f, 1.0f, 0.0f);
 
         var right = Vector3.Cross(forward.normalized, up.normalized);
-
-        if (this.groundedPlayer && this.playerVelocity.y < 0)
-        {
-            this.playerVelocity.y = 0;
-        }
 
         var move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
@@ -53,11 +49,7 @@ public class WormMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && this.groundedPlayer)
         {
-            this.playerVelocity.y += Mathf.Sqrt(this.jumpHeight * -3.0f * this.gravityValue);
+            this.gravityController.playerVelocity.y += Mathf.Sqrt(this.jumpHeight * -3.0f * this.gravityValue);
         }
-
-
-        this.playerVelocity.y += gravityValue * Time.deltaTime;
-        this.controller.Move(playerVelocity * Time.deltaTime);
     }
 }

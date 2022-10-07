@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +11,7 @@ public class WormKnockback : MonoBehaviour
     private float gravityValue = -9.81f;
     private GameObject origin;
 
-    void Start()
+    void Awake()
     {
         controller = gameObject.GetComponent(typeof(CharacterController)) as CharacterController;
     }
@@ -48,5 +48,14 @@ public class WormKnockback : MonoBehaviour
         this.velocity = damage.direction * damage.knockback;
         this.knockback = true;
         this.origin = damage.origin;
+    }
+
+    public void Death()
+    {
+        if (this.origin != null)
+        {
+            this.origin.SendMessage("OnLanded", this.gameObject);
+            this.origin = null;
+        }
     }
 }

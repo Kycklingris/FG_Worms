@@ -31,6 +31,8 @@ public class RocketLauncher : MonoBehaviour
             time = 3;
         }
 
+        time = Mathf.Sqrt(time);
+
         time *= 100.0f;
 
         var location = this.transform.position;

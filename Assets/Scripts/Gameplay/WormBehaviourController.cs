@@ -14,6 +14,11 @@ public class WormBehaviourController : MonoBehaviour
             this.movement.enabled = value;
             this.orbitCamera.SetActive(value);
             this._isActive = value;
+
+            if (!value)
+            {
+                this.SetWeapon(-1);
+            }
         }
     }
 
@@ -24,7 +29,7 @@ public class WormBehaviourController : MonoBehaviour
 
     public int health = 100;
 
-    void Start()
+    void Awake()
     {
         this.movement = gameObject.GetComponentInChildren(typeof(WormMovement)) as WormMovement;
         this.knockback = gameObject.GetComponentInChildren(typeof(WormKnockback)) as WormKnockback;
@@ -36,33 +41,47 @@ public class WormBehaviourController : MonoBehaviour
 
         this.SetWeapon(-1);
 
-        this.isActive = true;
+        this.isActive = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!this.isActive)
+        {
+            return;
+        } 
+
         if (Input.GetButtonDown("Weapon1"))
         {
             this.SetWeapon(0);
         } else if (Input.GetButtonDown("Weapon2"))
         {
-
+            this.SetWeapon(1);
         }
     }
 
     void SetWeapon(int number)
     {
-        foreach (var child in this.weapons)
+        var exitBeforeSelect = false;
+        if (number < 0)
+        {
+            exitBeforeSelect = true;
+        } else if (this.weapons[number].gameObject.activeSelf) // If the same button has been pressed twice, select no weapon
+        {
+            exitBeforeSelect = true;
+        }
+
+        foreach (var child in this.weapons) // Disable all weapons
         {
             child.gameObject.SetActive(false);
         }
 
-        if (number < 0)
+        if (exitBeforeSelect)
         {
             return;
         }
-        
+
         this.weapons[number].gameObject.SetActive(true);
     }
 
@@ -80,6 +99,29 @@ public class WormBehaviourController : MonoBehaviour
 
         this.health -= damage.damage;
 
+        if (this.health <= 0)
+        {
+            this.KillSelf();
+        }
+    }
 
+    void KillSelf()
+    {
+        var gameplayController = GameObject.Find("GameplayController").GetComponent<GameplayScript>();
+
+        gameplayController.Kill(this);
+    }
+
+    void Death()
+    {
+        this.isActive = false;
+        Destroy(this.gameObject);
+    }
+
+    public void SetMaterial(Material material)
+    {
+        var character = this.transform.Find("Character");
+        character.GetComponent<Renderer>().material = material;
+        character.transform.Find("Cube").GetComponent<Renderer>().material = material;
     }
 }

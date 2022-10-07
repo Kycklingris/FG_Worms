@@ -23,7 +23,11 @@ public class ExplosionScript : MonoBehaviour
     {
         if (Time.time > creationTime + this.time)
         {
-            
+            if (this.attacked.Count == 0)
+            {
+                Destroy(this.gameObject);
+                GameObject.Find("GameplayController").GetComponent<GameplayScript>().NextTurn();
+            }
         } else
         {
             this.transform.localScale += new Vector3(this.scaleStep * Time.deltaTime, this.scaleStep * Time.deltaTime, this.scaleStep * Time.deltaTime);
@@ -58,8 +62,8 @@ public class ExplosionScript : MonoBehaviour
 
         if (this.attacked.Count == 0)
         {
-
-           Destroy(this.gameObject);
+            Destroy(this.gameObject);
+            GameObject.Find("GameplayController").GetComponent<GameplayScript>().NextTurn();
         }
     }
 }
