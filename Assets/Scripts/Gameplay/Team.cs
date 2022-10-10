@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Team : ScriptableObject // required for instantiate
+public class Team
 {
     
 
@@ -55,7 +55,7 @@ public class Team : ScriptableObject // required for instantiate
 
         if (nonWater) // If the highest point isn't water
         {
-            var worm = Instantiate(wormPrefab, new Vector3(x, highest + 1.0f, z), Quaternion.identity);
+            var worm = GameObject.Instantiate(wormPrefab, new Vector3(x, highest + 1.0f, z), Quaternion.identity);
             var wormBehaviourController = worm.GetComponent<WormBehaviourController>();
             wormBehaviourController.SetMaterial(material);
             return (true, wormBehaviourController);

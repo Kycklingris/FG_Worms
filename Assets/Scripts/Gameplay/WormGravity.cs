@@ -23,7 +23,7 @@ public class WormGravity : MonoBehaviour
 
         if (this.groundedPlayer && this.playerVelocity.y < 0)
         {
-            this.playerVelocity.y = 0;
+            this.playerVelocity.y = this.gravityValue * 0.1f;
         }
 
         this.playerVelocity.y += gravityValue * Time.deltaTime;

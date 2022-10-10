@@ -9,17 +9,28 @@ public class WormKnockback : MonoBehaviour
     private bool knockback;
     private Vector3 velocity;
     private float gravityValue = -9.81f;
+    private float knockbackTime = 0.5f;
+    private float endTime;
     private GameObject origin;
 
     void Awake()
     {
-        controller = gameObject.GetComponent(typeof(CharacterController)) as CharacterController;
+        this.controller = gameObject.GetComponent(typeof(CharacterController)) as CharacterController;
+        this.endTime = Time.time + this.knockbackTime;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         if (!this.knockback)
+        {
+            return;
+        }
+
+        this.velocity.y += this.gravityValue * Time.deltaTime;
+        controller.Move(this.velocity * Time.deltaTime);
+
+        if (this.endTime > Time.time)
         {
             return;
         }
@@ -38,9 +49,6 @@ public class WormKnockback : MonoBehaviour
 
             return;
         }
-
-        this.velocity.y += this.gravityValue * Time.deltaTime;
-        controller.Move(this.velocity * Time.deltaTime);
     }
 
     public void Knockback(DamageClass damage)

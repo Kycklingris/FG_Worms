@@ -8,7 +8,7 @@ public class WormMovement : MonoBehaviour
     private WormGravity gravityController;
     private float playerSpeed = 4.0f;
     private bool groundedPlayer;
-    private float jumpHeight = 2.0f;
+    private float jumpHeight = 1.5f;
     private float gravityValue = -9.81f;
 
     public Transform orbitCamera;
