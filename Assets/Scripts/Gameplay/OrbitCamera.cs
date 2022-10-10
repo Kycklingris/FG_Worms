@@ -4,50 +4,32 @@ using UnityEngine;
 
 public class OrbitCamera : MonoBehaviour
 {
-    public GameObject target;
+    public Transform target;
     public float movementSpeed = 5.0F;
     public float zoomSpeed = 5.0F;
-    private Vector3 lastLocalTransform;
+    private Vector2 rotation;
+    private float distance;
 
     // Start is called before the first frame update
     void Awake()
     {
-        this.lastLocalTransform = this.transform.position - this.target.transform.position;
+        this.distance = Vector3.Distance(this.gameObject.transform.position, this.target.position);
+        var rotation = this.gameObject.transform.eulerAngles;
+
+        this.rotation = new Vector2(rotation.x, rotation.y);
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.FollowTarget();
-        this.MoveCamera();
-        this.ZoomCamera();
-        this.SaveLocalTransform();
-    }
+        this.gameObject.transform.position = this.target.position;
 
-    void FollowTarget()
-    {
-        this.transform.position = this.lastLocalTransform + this.target.transform.position;
-    }
+        this.rotation.x += Input.GetAxis("Mouse Y") * Time.deltaTime * this.movementSpeed;
+        this.rotation.y -= Input.GetAxis("Mouse X") * Time.deltaTime * this.movementSpeed;
+        this.distance += Input.mouseScrollDelta.y * this.zoomSpeed * Time.deltaTime;
 
-    void MoveCamera()
-    {
-        var mouse = new Vector3(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"), 0.0f);
+        this.gameObject.transform.rotation = Quaternion.Euler(0, this.rotation.y, 0) * Quaternion.Euler(this.rotation.x, 0, 0);
 
-        transform.RotateAround(target.transform.position, Vector3.right, mouse.y * movementSpeed * Time.deltaTime);
-        transform.RotateAround(target.transform.position, Vector3.up, mouse.x * movementSpeed * Time.deltaTime);
-
-        transform.LookAt(target.transform);
-    }
-
-    void ZoomCamera()
-    {
-        var deltaScroll = Input.GetAxis("Mouse ScrollWheel");
-
-        transform.position -= transform.forward * deltaScroll * zoomSpeed * Time.deltaTime;
-    }
-
-    void SaveLocalTransform()
-    {
-        this.lastLocalTransform = this.transform.position - this.target.transform.position;
+        this.gameObject.transform.position -= this.gameObject.transform.forward * this.distance;
     }
 }

@@ -6,9 +6,9 @@ public class WormMovement : MonoBehaviour
 {
     private CharacterController controller;
     private WormGravity gravityController;
-    private float playerSpeed = 2.0f;
+    private float playerSpeed = 4.0f;
     private bool groundedPlayer;
-    private float jumpHeight = 1.0f;
+    private float jumpHeight = 2.0f;
     private float gravityValue = -9.81f;
 
     public Transform orbitCamera;
@@ -24,32 +24,31 @@ public class WormMovement : MonoBehaviour
     void Update()
     {
         this.groundedPlayer = controller.isGrounded;
-        var forward = orbitCamera.forward;
-        forward.y = 0;
-
-        var up = new Vector3(0.0f, 1.0f, 0.0f);
-
-        var right = Vector3.Cross(forward.normalized, up.normalized);
-
         var move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        
+        if (Input.GetButtonDown("Jump") && this.groundedPlayer)
+        {
+            this.gravityController.playerVelocity.y += Mathf.Sqrt(this.jumpHeight * -3.0f * this.gravityValue);
+        }
 
         if (move != Vector3.zero)
         {
+            var forward = orbitCamera.forward;
+            forward.y = 0;
+
+            var right = Vector3.Cross(forward, Vector3.up);
+
             var moveForward = forward;
             moveForward *= move.z;
 
             var moveRight = right;
-            moveRight *= -move.x; // Not entirely sure why it needs to be negative
+            moveRight *= -move.x;
 
             var movement = moveForward + moveRight;
 
             this.gameObject.transform.forward = movement;
             this.controller.Move(movement * this.playerSpeed * Time.deltaTime);
         }
-
-        if (Input.GetButtonDown("Jump") && this.groundedPlayer)
-        {
-            this.gravityController.playerVelocity.y += Mathf.Sqrt(this.jumpHeight * -3.0f * this.gravityValue);
-        }
+        
     }
 }

@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5695609014292070746}
   m_LocalRotation: {x: 0.48878565, y: -0, z: -0, w: 0.8724039}
-  m_LocalPosition: {x: 0, y: 0.67, z: -0.549}
+  m_LocalPosition: {x: 0, y: 21.04, z: -13.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b33e9d050f7bdd4409b640c68724e572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 7831902890744790008}
+  target: {fileID: 890089763963638021}
   movementSpeed: 300
   zoomSpeed: 300
 --- !u!1 &7831902890744790008
@@ -145,3 +145,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8fcb472c8a323a4995f80a5576cc198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 65
+  knockback: 7.5

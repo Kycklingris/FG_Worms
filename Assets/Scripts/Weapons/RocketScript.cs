@@ -6,9 +6,9 @@ public class RocketScript : MonoBehaviour
 {
     public float forwardVelocity;
     private float gravityValue = -9.81f;
-    private Vector3 originalForward;
     private Rigidbody rb;
     public GameObject explosionPrefab;
+    private Vector3 velocity;
 
     public float maxFlightTime = 5.0f;
     private float timeLimit;
@@ -17,17 +17,17 @@ public class RocketScript : MonoBehaviour
     void Start()
     {
         this.timeLimit = Time.time + this.maxFlightTime;
-        this.originalForward = this.transform.forward;
         this.rb = this.GetComponent<Rigidbody>();
+
+        this.velocity = this.transform.forward * forwardVelocity;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        var movement = this.originalForward * forwardVelocity * Time.deltaTime;
-        movement.y = gravityValue * Time.deltaTime;
+        this.velocity.y += this.gravityValue * Time.deltaTime;
 
-        this.rb.MovePosition(transform.position + movement);
+        this.rb.MovePosition(transform.position + this.velocity * Time.deltaTime);
 
         if (Time.time > this.timeLimit)
         {

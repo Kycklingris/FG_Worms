@@ -6,10 +6,15 @@ public class RocketLauncher : MonoBehaviour
 {
     private float startHeld = 0.0f;
     public GameObject rocketPrefab;
+    public Transform cameraTransform;
 
     // Update is called once per frame
     void Update()
     {
+        var cameraRot = this.cameraTransform.eulerAngles.x;
+
+        this.gameObject.transform.localRotation = Quaternion.Euler(cameraRot - 45.0f, 0, 0);
+
         if (Input.GetButtonDown("Fire1") && this.startHeld == 0.0)
         {
             this.startHeld = Time.time;
@@ -26,22 +31,20 @@ public class RocketLauncher : MonoBehaviour
 
     void Shoot(float time)
     {
-        if (time > 3) // Cap power level
+        if (time > 3.0f) // Cap power level
         {
-            time = 3;
+            time = 3.0f;
         }
 
-        time = Mathf.Sqrt(time);
+        time = Mathf.Pow(time, 2.0f);
 
-        time *= 100.0f;
+        time *= 10.0f;
 
         var location = this.transform.position;
 
         var forward = this.transform.rotation * Vector3.up;
 
         location += forward * 1.0f;
-
-        // var quat = Quaternion.LookRotation(forward, Vector3.up);
 
         var projectile = Instantiate(this.rocketPrefab, location, Quaternion.identity);
         projectile.transform.forward = forward;

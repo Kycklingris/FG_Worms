@@ -24,8 +24,9 @@ public class WormBehaviourController : MonoBehaviour
 
     private WormMovement movement;
     private WormKnockback knockback;
-    private Transform[] weapons;
     private GameObject orbitCamera;
+
+    public List<GameObject> weapons = new List<GameObject>();
 
     public int health = 100;
 
@@ -35,9 +36,6 @@ public class WormBehaviourController : MonoBehaviour
         this.knockback = gameObject.GetComponentInChildren(typeof(WormKnockback)) as WormKnockback;
         var character = gameObject.transform.Find("Character");
         this.orbitCamera = this.transform.Find("Orbit Camera").gameObject;
-
-        var weaponSlot = character.transform.Find("Weapon Slot");
-        this.weapons = Array.FindAll(weaponSlot.GetComponentsInChildren<Transform>(), child => child != weaponSlot);
 
         this.SetWeapon(-1);
 
@@ -67,7 +65,7 @@ public class WormBehaviourController : MonoBehaviour
         if (number < 0)
         {
             exitBeforeSelect = true;
-        } else if (this.weapons[number].gameObject.activeSelf) // If the same button has been pressed twice, select no weapon
+        } else if (this.weapons[number].activeSelf) // If the same button has been pressed twice, select no weapon
         {
             exitBeforeSelect = true;
         }
@@ -89,11 +87,11 @@ public class WormBehaviourController : MonoBehaviour
             return;
         }
 
-        this.weapons[number].gameObject.SetActive(true);
+        this.weapons[number].SetActive(true);
 
         if (number == 1) // If the weapon is a sniper, switch movement to follow the direction of the scoped camera
         {
-            var scopeCamera = this.weapons[number].Find("Scope Camera").gameObject;
+            var scopeCamera = this.weapons[number].transform.Find("Scope Camera").gameObject;
             this.movement.orbitCamera = scopeCamera.transform;
             orbitCamera.SetActive(false);
         }
