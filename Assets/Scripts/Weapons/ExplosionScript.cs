@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ExplosionScript : MonoBehaviour
 {
-    public float range = 12.0f;
-    public int damage = 45;
-    public string targetTag = "Worm";
-    public float time = 0.5f;
-    public float knockback = 20.0f;
+    [SerializeField] private float range = 12.0f;
+    [SerializeField] private int damage = 45;
+    [SerializeField] private string targetTag = "Worm";
+    [SerializeField] private float time = 0.5f;
+    [SerializeField] private float knockback = 20.0f;
     private float creationTime;
     private float scaleStep;
     private List<GameObject> attacked = new List<GameObject>();

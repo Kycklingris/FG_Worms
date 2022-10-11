@@ -7,10 +7,10 @@ public class RocketScript : MonoBehaviour
     public float forwardVelocity;
     private float gravityValue = -9.81f;
     private Rigidbody rb;
-    public GameObject explosionPrefab;
+    [SerializeField] private GameObject explosionPrefab;
     private Vector3 velocity;
 
-    public float maxFlightTime = 5.0f;
+    [SerializeField] private float maxFlightTime = 5.0f;
     private float timeLimit;
 
     // Start is called before the first frame update

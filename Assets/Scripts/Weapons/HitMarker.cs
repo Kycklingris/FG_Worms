@@ -5,8 +5,8 @@ using UnityEngine;
 public class HitMarker : MonoBehaviour
 {
     private GameObject attacked;
-    public int damage = 65;
-    public float knockback = 7.5f;
+    [SerializeField] private int damage = 65;
+    [SerializeField] private float knockback = 7.5f;
 
     public void Attack(GameObject target, Vector3 direction)
     {

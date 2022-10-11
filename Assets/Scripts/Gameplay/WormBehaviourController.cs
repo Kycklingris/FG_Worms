@@ -26,9 +26,14 @@ public class WormBehaviourController : MonoBehaviour
     private WormKnockback knockback;
     private GameObject orbitCamera;
 
-    public List<GameObject> weapons = new List<GameObject>();
+    [SerializeField] private List<GameObject> weapons = new List<GameObject>();
 
-    public int health = 100;
+    [SerializeField] private int _health = 100;
+
+    public int health
+    {
+        get { return _health; }
+    }
 
     void Awake()
     {
@@ -109,9 +114,9 @@ public class WormBehaviourController : MonoBehaviour
             this.knockback.Knockback(damage);
         }
 
-        this.health -= damage.damage;
+        this._health -= damage.damage;
 
-        if (this.health <= 0)
+        if (this._health <= 0)
         {
             this.KillSelf();
         }

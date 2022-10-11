@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class OrbitCamera : MonoBehaviour
 {
-    public Transform target;
-    public float movementSpeed = 5.0F;
-    public float zoomSpeed = 5.0F;
+    [SerializeField] private Transform target;
+    [SerializeField] private float movementSpeed = 5.0F;
+    [SerializeField] private float zoomSpeed = 5.0F;
     private Vector2 rotation;
     private float distance;
 

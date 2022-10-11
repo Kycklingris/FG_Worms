@@ -5,17 +5,17 @@ using TMPro;
 
 public class GameplayScript : MonoBehaviour
 {
-    public GameObject wormPrefab;
+    [SerializeField] private GameObject wormPrefab;
 
-    public float mapWidth;
-    public float mapHeight;
-    public float startCheckHeight;
-    public float waterLevel;
-    public Material redMaterial;
-    public Material blueMaterial;
+    [SerializeField] private float mapWidth;
+    [SerializeField] private float mapHeight;
+    [SerializeField] private float startCheckHeight;
+    [SerializeField] private float waterLevel;
+    [SerializeField] private Material redMaterial;
+    [SerializeField] private Material blueMaterial;
 
-    public GameObject pauseMenu;
-    public GameObject lossMenu;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject lossMenu;
 
     private List<Team> teams = new List<Team>();
     private int teamIndex = 0;

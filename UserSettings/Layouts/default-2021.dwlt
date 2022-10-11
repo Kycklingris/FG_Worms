@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 138
+  controlID: 100
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 139
+  controlID: 90
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 46
+  controlID: 91
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -317,22 +317,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Scripts/Gameplay
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Scripts/Gameplay
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\malte\Documents\dev\Worms
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 8a5c0000
-    m_LastClickedID: 23690
-    m_ExpandedIDs: 00000000585c00005a5c00005c5c00005e5c000000ca9a3b
+    m_SelectedIDs: 8c5c0000
+    m_LastClickedID: 23692
+    m_ExpandedIDs: 000000006a5c00006c5c00006e5c0000705c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -360,7 +360,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000585c00005a5c00005c5c00005e5c0000
+    m_ExpandedIDs: 000000006a5c00006c5c00006e5c0000705c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -490,7 +490,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 2c31ffff8ea7ffff38fbffff545a0000
+      m_ExpandedIDs: 80f9ffff2cfbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -739,9 +739,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -118.730194, y: -128.97119, z: 105.06482}
+    m_Target: {x: -16.542286, y: -168.96143, z: 218.5815}
     speed: 2
-    m_Value: {x: -118.730194, y: -128.97119, z: 105.06482}
+    m_Value: {x: -16.542286, y: -168.96143, z: 218.5815}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -788,13 +788,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.27854306, y: -0.5258239, z: 0.1873331, w: 0.7816045}
+    m_Target: {x: 0.2972388, y: 0.011742868, z: -0.003706074, w: 0.9547638}
     speed: 2
-    m_Value: {x: 0.27853242, y: -0.5258038, z: 0.18732595, w: 0.7815747}
+    m_Value: {x: 0.2972274, y: 0.01174242, z: -0.0037059323, w: 0.9547273}
   m_Size:
-    m_Target: 330.15982
+    m_Target: 215.7437
     speed: 2
-    m_Value: 330.15982
+    m_Value: 215.7437
   m_Ortho:
     m_Target: 0
     speed: 2

@@ -5,8 +5,8 @@ using UnityEngine;
 public class RocketLauncher : MonoBehaviour
 {
     private float startHeld = 0.0f;
-    public GameObject rocketPrefab;
-    public Transform cameraTransform;
+    [SerializeField] private GameObject rocketPrefab;
+    [SerializeField] private Transform cameraTransform;
 
     // Update is called once per frame
     void Update()

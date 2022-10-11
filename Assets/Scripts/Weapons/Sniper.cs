@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Sniper : MonoBehaviour
 {
-    public GameObject hitPrefab;
-    public GameObject zoomCamera;
+    [SerializeField] private GameObject hitPrefab;
+    [SerializeField] private GameObject zoomCamera;
 
     void OnEnable()
     {

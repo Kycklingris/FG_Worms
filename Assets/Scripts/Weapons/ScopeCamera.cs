@@ -5,8 +5,8 @@ using UnityEngine;
 public class ScopeCamera : MonoBehaviour
 {
     private Vector2 rotation = new Vector2(0.0f, 90.0f);
-    public float sensitivity = 400f;
-    public Transform worm;
+    [SerializeField] private float sensitivity = 400f;
+    [SerializeField] private Transform worm;
 
     void OnEnable()
     {
